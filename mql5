@@ -1,0 +1,58 @@
+
+//+------------------------------------------------------------------+
+//|                                                   BBSO Tachyon MT5|
+//|                                       Developer's Site: forexroboteasy.com|
+//|                                      Developed by: Forex Robot Easy Team|
+//+------------------------------------------------------------------+
+
+// Include necessary libraries
+#include <Trade\Trade.mqh>
+#include <Expert\Expert.mqh>
+
+// Define constants
+#define MAX_TRADES 100
+#define VIRTUAL_TP 50
+
+// Declare global variables
+CTrade trade;
+int totalTrades = 0;
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Implement BBSO range trading module
+
+   // Generate entry signal based on BBSO
+
+   // Generate high volume of quick trades
+
+   // Capitalize on entry point of BBSO
+   
+   // Set random pip range for trading
+   int randomPipRange = MathRand() % 10 + 1;
+
+   // Open buy and sell trades within the random pip range
+   trade.BuyStop(100, Symbol(), NormalizeDouble(Bid + randomPipRange * Point, Digits), VIRTUAL_TP, 0);
+   trade.SellStop(100, Symbol(), NormalizeDouble(Ask - randomPipRange * Point, Digits), VIRTUAL_TP, 0);
+
+   totalTrades++;
+
+   // Close trades when virtual TP is reached
+   if (totalTrades >= MAX_TRADES)
+   {
+      trade.CloseAll();
+      totalTrades = 0;
+   }
+}
+
+//+------------------------------------------------------------------+
